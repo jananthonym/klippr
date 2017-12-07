@@ -1,0 +1,16 @@
+<ion-view title="{{store.name}}" id="page7" class=" ">
+    <ion-content padding="true" class="has-header content-stable">
+
+        <ion-list class=" ">
+
+            <ion-item ng-repeat="e in employees" class="item-thumbnail-left" ng-click="employeeClick(e)">
+                <img src="{{e.pic}}">
+                <h2>{{e.firstName}} {{e.lastName}}</h2>
+                <span class="icon-right ion-star item-note">{{e.stars}}</span>
+            </ion-item>
+
+        </ion-list>
+
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,38 @@
+<ion-view title="{{haircut_data.cuttee}}" id="page12" class=" ">
+    <ion-content padding="false" class="has-header content-stable">
+
+        <ion-list ng-show="true" class=" ">
+            <ion-item class="item-avatar-right  "> 
+                <img src="{{haircut_data.employee.pic}}" ng-click="gotoBarber(haircut_data.employee)">
+                <h2>by {{haircut_data.employee.firstName}} {{haircut_data.employee.lastName}} at {{haircut_data.store.name}}</h2>
+                <p>{{data.timeAgo}}</p>
+            </ion-item>
+        </ion-list>
+
+        <div class="">
+            <img src= "{{haircut_data.pic}}"" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+        </div>
+
+        <ion-list ng-show="comments.length > 0" class=" " ng-repeat="comm in comments">
+            <ion-item class="item-avatar  item-text-wrap">
+                <img src="{{comm.user.pic}}">
+                <span style="font-weight:bold">{{comm.user.firstName}} </span> 
+                <span>{{comm.content}}</span>
+                <p>{{comm.timeAgo}}</p>
+            </ion-item>
+        </ion-list>
+
+        <div class="spacer" style="width: 300px; height: 50px;"></div>
+
+    </ion-content>
+
+    <div style="position: absolute; bottom: 0px; width: 100%">
+        <form name="paymentForm" class="item item-input-inset " ng-submit=postComment(comment)>
+            <label class="item-input-wrapper">
+                <input type="text" placeholder="comment" ng-model="comment" ng-maxlength="150" required>
+            </label>
+            <button type="submit" class="button button-small button-energized">Post</button>
+        </form>
+    </div>
+
+</ion-view>

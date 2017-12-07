@@ -1,0 +1,211 @@
+$energized: #ffc900;
+$assertive: #ef4e3a;
+$stable:    #f8f8f8 !default;
+
+$link-color: $energized;
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+@import "../www/lib/ionic/scss/ionic";
+.no-padding {
+	padding: 0px !important;
+}
+
+.center {
+	text-align: center;
+}
+
+.list-nob1 {
+	border-bottom: 0px;
+}
+
+.list-nob2 {
+	border-top: 0px;
+}
+
+.list-nob3 {
+	border-bottom: 0px;
+	border-left: 0px;
+	border-right: 0px;
+}
+
+.nob4 {
+	border-bottom: 0px;
+	border-top: 0px;
+	border-right: 0px;
+}
+
+.card {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.no-padding {
+    padding: 0px !important;
+}
+
+.loading-container .loading {
+    background-color: white;
+    color: black;
+    border-width: 0px !important;
+}
+
+.search-bar{
+    left: 0px;
+    max-width: 200%;
+    position: fixed;
+}
+
+.to-back {
+	z-index: -1;
+}
+
+.to-front {
+  z-index: 9000;
+}
+
+.scroll-refresher .spinner{
+  stroke: $energized;
+}
+
+.infinite-spinner-energized .spinner {
+  stroke: $energized;
+  fill: $assertive;
+}
+
+.energized-icon {
+	color: $energized !important;
+}
+
+.red-text {
+	color: $energized !important;
+}
+
+.animate-show {
+  line-height: 38px;
+  opacity: 1;
+  padding: 10px;
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  transition: all linear 0.2s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 1;
+  padding: 0 10px;
+}
+
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: all linear 0.3s;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
+//for viewing an employee's default
+.item-avatar-large  { 
+  padding: 20px;
+  display: block; 
+  margin-left: auto; 
+  margin-right: auto;
+
+  border-radius: 50% !important;
+  width: 200px !important;  //any size
+  height: 200px !important; //any size 
+}
+
+//for selecting a service
+.item-select select {
+    -moz-appearance: none;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    padding: 0px 45px 0px 0px;
+    max-width: 100%;
+    border: medium none;
+    background: #FFF none repeat scroll 0% 0%;
+    color: #333;
+    text-indent: 0.01px;
+    text-overflow: "";
+    white-space: nowrap;
+    font-size: 14px;
+    cursor: pointer;
+    direction: rtl;
+}
+
+//for viewing a image from employee portfolio
+.transparent {
+  background: #000 !important;
+}
+.image-modal {
+  width: 100% !important;
+  height: 100%;
+  top: 0 !important;
+  left: 0 !important;
+}
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 100%;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+/* Fix modal backdrop for smaller devices */
+@media (max-width: 679px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
+}
+
+//animation for gallery
+.slide-in-right {
+  -webkit-transform: translateX(150%);
+    transform: translateX(150%); }
+
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 500ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 500ms; }
+
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+  -webkit-transform: translateX(0);
+    transform: translateX(0); }
+
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms; }
+
+//background for view content
+.content-stable{
+  background-color: $stable
+}
+
+//star rating
+ul.rating li {
+  display: inline-block;
+  border: 0px;
+  background: none;
+  padding: 5px 10px;
+  text-align: center;
+}
+ul.rating li i {
+  font-size: 30px;
+}

@@ -1,0 +1,26 @@
+<ion-view title="Promotions" id="page15" class=" ">
+    <ion-content padding="true" class="has-header content-stable">
+
+        <ion-list class=" ">
+
+            <form class="list " ng-submit="redeem(data2.inputCode)" >
+
+                <label class="item item-input ">
+                    <input type="text" placeholder="Enter Promo Code" ng-model="data2.inputCode" required>
+                </label>
+
+                <button ng-disabled="!data.ready" type="submit" class="button button-energized  button-block" >Redeem</button>
+
+            </form>
+
+            <div class="spacer" style="height: 20px;"></div>
+
+            <ion-item ng-repeat="c in unusedCoupons" class="item-icon-left" ng-click="">
+                ${{c.value}}
+                <i class="icon ion-cash"></i>
+            </ion-item>
+
+        </ion-list>
+
+    </ion-content>
+</ion-view>

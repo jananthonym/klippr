@@ -1,0 +1,74 @@
+<ion-view title="{{employee.firstName}} {{employee.lastName}}" class=" ">
+    <ion-content padding="false" class="has-header content-stable" >
+
+        <div class="spacer" style="width: 300px; height: 10px;"></div>
+
+        <div class="no-padding" style="margin-left: -10px; width: calc(100% + 20px);">
+            <img src="{{employee.pic}}" width="100%" height="auto" class="item-avatar-large">
+        </div>
+
+        <ion-item class=" item-borderless item-input" >
+            <!--<span class="label">{{employee.bio}}</span>-->
+            <textarea readonly expanding-textarea style="background-color:#fff">{{employee.bio}}</textarea>
+        </ion-item>
+
+        <div class="spacer" style="width: 300px; height: 5px;"></div>
+
+        <div class="button-bar">
+            <a ng-class="{'button button-energized': data.viewing=='services', 'button button-energized button-outline': data.viewing!='services'}" ng-click="data.viewing='services' ">Services</a>
+
+            <a ng-class="{'button button-energized': data.viewing=='gallery', 'button button-energized button-outline': data.viewing!='gallery'}" ng-click="data.viewing='gallery' ">Gallery</a>
+
+            <a ng-class="{'button button-energized': data.viewing=='reviews', 'button button-energized button-outline': data.viewing!='reviews'}" ng-click="data.viewing='reviews' ">Reviews</a>
+        </div>
+        <div class="spacer" style="width: 300px; height: 5px;"></div>
+
+        <!-- gallery -->
+        <div ng-if="data.viewing=='gallery' "> <!-- combining this with the line below fucks the grid up -->
+            <div class="row" ng-repeat="image in images" ng-if="$index % 3 === 0">
+                <div class="col col-33" ng-if="$index < images.length">
+                    <img ng-src="{{images[$index]}}" width="100%" ng-click="imgClick(images[$index])" />
+                </div>
+                <div class="col col-33" ng-if="$index + 1 < images.length">
+                    <img ng-src="{{images[$index + 1]}}" width="100%" ng-click="imgClick(images[$index + 1])" />
+                </div>
+                <div class="col col-33" ng-if="$index + 2 < images.length">
+                    <img ng-src="{{images[$index + 2]}}" width="100%" ng-click="imgClick(images[$index + 2])" />
+                </div>
+            </div>
+        </div>
+
+        <!-- services -->
+        <div ng-if="data.viewing=='services' ">
+            <ion-item class="" ng-repeat="service in services">
+                <span style="float:left;">{{service.service}}</span>
+                <span style="float:right;" class="balanced">{{service.price}}</span>
+            </ion-item>
+        </div>
+
+        <!-- reviews -->
+        <div ng-if="data.viewing=='reviews' ">
+            <ion-item class="item-text-wrap item-avatar-left" ng-repeat="review in reviews">
+                <img src="{{review.user.pic}}">
+                {{review.employeeReview}}
+            </ion-item>
+        </div>
+
+        <div class="spacer" style="width: 300px; height: 50px;"></div>
+
+        <!-- fulscreen image viewer -->
+        <script id="image-modal.html" type="text/ng-template">
+              <div class="modal image-modal transparent" ng-click="closeModal()">
+                  <ion-pane class="transparent">
+                     <img ng-src="{{imageSrc}}" class="fullscreen-image"/>
+                  </ion-pane>
+              </div>
+          </script>
+
+    </ion-content>
+
+    <div style="position: absolute; bottom: -10px; width: 100%">
+        <button ng-click="schedule()" class="button button-full button-energized icon-right ion-calendar">Schedule</button>
+    </div>
+
+</ion-view>

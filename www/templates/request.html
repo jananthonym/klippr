@@ -1,0 +1,32 @@
+<ion-view ng-show="show" title="Request" id="page3" class=" " hide-nav-bar="true">
+    <ion-content padding="true" class="has-header content-stable">
+
+        <ion-list class=" ">
+
+            <form class="list " ng-submit="search(selectDate, requestLocation)">
+
+                <label class="item item-input ">
+                    <span class="input-label">Date</span>
+                    <input type="date" ng-model="selectDate" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}">
+                </label>
+
+                <label class="item item-input ">
+                    <span class="input-label">Where</span>
+                    <input type="text" placeholder="Current Location" ng-model="requestLocation">
+                </label>
+
+                <button type="submit" class="button button-energized  button-block ">Search</button>
+
+            </form>
+
+            <ion-item ng-repeat="store in stores" class="item-thumbnail-left item-text-wrap" ng-click="viewStore(store)">
+                <img src="{{store.pic}}">
+                <h2>{{store.name}}<span class="item-note">{{store.stars}}<span class="item-note icon ion-star"></span></span></h2>
+                <h3>{{store.address}}</h3>
+                <h4>{{store.distanceAway}} miles</h4>
+            </ion-item>
+
+        </ion-list>
+
+    </ion-content>
+</ion-view>

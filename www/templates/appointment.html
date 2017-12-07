@@ -1,0 +1,66 @@
+<ion-view ng-show="cut" title="Appointment" id="page10" class=" " hide-nav-bar="true">
+    <ion-content padding="true" class="has-header content-stable">
+
+        <div ng-if="cut.status!= 'completed'">
+            <div class="spacer" style="width: 300px; height: 40px;"></div>
+
+            <ion-item class="item-thumbnail-left  item-borderless content-stable" ng-click=openMaps()>
+                <img src="{{cut.store.pic}}">
+                <h2>{{cut.store.name}}</h2>
+                <p style="white-space:normal;">{{cut.store.address}}</p>
+            </ion-item>
+
+            <div class="spacer" style="width: 300px; height: 20px;"></div>
+
+            <ion-item class="item-avatar  list-nob3 content-stable">
+                <img src="{{cut.employee.pic}}">
+                <h2>{{cut.employee.firstName}} {{cut.employee.lastName}}</h2>
+                <p>{{cut.localTime}}</p>
+            </ion-item>
+
+            <ion-item class="item-borderless content-stable">
+                <span style="float:left;">{{cut.serviceName}} - {{cut.serviceDuration}} minutes</span>
+                <span style="float:right;">{{cut.servicePrice}}</span>
+                </br>
+                <span class="">Status: </span>&nbsp;<span ng-class="{'energized': cut.status=='pending', 'balanced': cut.status=='confirmed' || cut.status=='completed', 'assertive': cut.status=='declined'}">{{cut.status}}</span>
+
+                <h3 ng-if="cut.checkedIn">You've Checked In</h3>
+
+                <h2 ng-if="cut.status=='declined' ">Reason:<br>{{cut.reason}}</h2>
+            </ion-item>
+
+            <!-- Cut is pending or confirmed -->
+            <div ng-if="cut.status!='declined' " class=" button-bar ">
+                <button class=" button button-energized  button-block button-outline " ng-click="cancelCut()" >Cancel</button>
+                <button ng-if="cut.checkedIn==null && cut.status=='confirmed' " class=" button button-energized  button-block " ng-click="checkIn()">Check In</button>
+            </div>
+
+            <!-- Cut is declined by employee -->
+            <div ng-if="cut.status=='declined' " class=" button-bar ">
+                <button class=" button button-energized  button-block button-outline " ng-click="dismissCut()" >Dismiss</button>
+            </div>
+        </div>
+
+
+
+        <div ng-if="cut.status== 'completed'">
+            <h3 class="center">Please Review Your Appointment</h3>
+            <ion-item class="item-avatar item-borderless content-stable">
+                <img src="{{cut.employee.pic}}">
+                <h2>{{cut.employee.firstName}} {{cut.employee.lastName}}</h2>
+                <p>{{cut.localTime}}</p>
+            </ion-item>
+
+            <span class="input-label">{{cut.employee.firstName}}'s Review</span>
+            <label class="item item-input">
+                <textarea expanding-textarea placeholder="review" ng-model="cut.employeeReview" maxlength="300"> </textarea>
+            </label>
+            <rating ng-model="rating.rate" max="5"></rating>
+
+            <div class="spacer" style="width: 300px; height: 50px;"></div>
+
+            <button class="button button-energized  button-block " ng-click="dismissCut()" >Submit</button>
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,67 @@
+<ion-view id="page2" class=" " hide-nav-bar="true">
+    <ion-content padding="true" class=" manual-remove-top-padding has-header content-stable">
+       <!-- <div style="height: 84px;"></div> -->
+
+         <!--style="margin-top: 84px" -->
+        <ion-refresher
+            pulling-text="Refresh..."
+            on-refresh="getFeed('new')">
+        </ion-refresher>
+
+        <div class="list card " ng-repeat="card in cards track by $index">
+
+            <ion-item ng-if="friendMode" class="item-avatar-right item-text-wrap">
+                <img src="{{card.employee.pic}}" ng-click="gotoBarber(card.employee)">
+                <h2>{{card.user.firstName}} {{card.user.lastName}}</h2>
+                <p>by {{card.employee.firstName}} {{card.employee.lastName}} at {{card.store.name}}</p>
+            </ion-item>
+
+            <ion-item ng-if="!friendMode" class="item-avatar-right item-text-wrap">
+                <img src="{{card.employee.pic}}" ng-click="gotoBarber(card.employee)">
+                <h2>{{card.employee.firstName}} {{card.employee.lastName}} at {{card.store.name}}</h2>
+                <p>{{card.localTime}}</p>
+                <span class="">Status: </span>&nbsp;<span ng-class="{'energized': card.status=='pending', 'balanced': card.status=='confirmed',
+                'assertive' : card.status=='cancelled' || card.status=='declined', 'balanced' : card.status=='completed' }">{{card.status}}</span>
+                <span ng-class="{'balanced': card.paid, 'assertive': !card.paid }" style="float:right;">{{card.servicePrice}}</span>
+                <p ng-if="card.status=='completed' " class="icon ion-thumbsup ">{{card.numLikes}}</p>
+            </ion-item>
+
+            <div ng-if="card.status=='completed' " class=" item item-image">
+                <a style="display:block;" ng-click="viewCard(card)">
+                    <img src="{{card.pic}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                </a>
+            </div>
+
+            <ion-item ng-if="card.status=='completed' && card.caption" class="item-borderless">{{card.caption}}</ion-item>
+
+            <div ng-if="friendMode && card.status=='completed' " class="item item-body list-nob2">
+                <button style="font-size:15px;" ng-class="{'button button-energized button-small icon ion-thumbsup button-outline': !card.liked, 'button button-energized button-small button-default icon ion-thumbsup': card.liked}" ng-click="likeCut($index)">{{card.numLikes}}</button>
+            </div>
+
+            <ion-toggle ng-if="!friendMode && card.status=='completed' " toggle-class="toggle-energized" class=" " ng-model="card.public" ng-change="updatePublic(card)">Share with Followers</ion-toggle>
+
+        </div>
+
+        <ion-infinite-scroll
+            class="infinite-spinner-energized"
+            ng-if="canLoadOld()"
+            immediate-check="false"
+            on-infinite="getFeed('old')"
+            distance="1%">
+        </ion-infinite-scroll>
+
+    </ion-content>
+    
+    <ion-footer-bar class="bar-stable ">
+
+        <a class="button button-stable button-icon-left button-icon-right energized-icon" ui-sref="search" style="max-width:20%" >
+            <i class="icon ion-search energized-icon"></i>
+            <i class="icon ion-person-stalker"></i>
+        </a>
+        <div class="button-bar">
+            <a ng-class="{'button button-energized button-outline': !friendMode, 'button button-energized': friendMode}" ng-click="viewFriends()">Feed</a>
+            <a ng-class="{'button button-energized to-front': !friendMode, 'button button-energized button-outline': friendMode}" ng-click="viewMe()">Me</a>
+        </div>
+            
+    </ion-footer-bar>
+</ion-view>

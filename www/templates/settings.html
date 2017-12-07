@@ -1,0 +1,36 @@
+<ion-view title="Settings" id="page4" class=" " hide-nav-bar="true">
+    <ion-content padding="true" class="has-header content-stable">
+        <ion-list id="settings-list13" class=" ">
+
+            <ion-item class="item-borderless" style="background-color: transparent;">Search</ion-item>
+
+            <ion-item class="  list-nob1">Distance : <span style="font-weight:bold">{{data.distance}}</span> miles</ion-item>
+            <ion-item class="range range-energized list-nob2" >
+                <input type="range" min="0" max="50" name="searchDistance" ng-model="data.distance">
+            </ion-item>
+
+            <ion-item class="list-nob3" style="background-color: transparent;">Payment</ion-item>
+
+            <ion-item class="item-icon-right  " ui-sref="creditCard">Manage Cards
+                <i class="icon ion-card"></i>
+            </ion-item>
+
+            <ion-item class="item-icon-right" ui-sref="promotions">
+                Promotions
+                <i class="icon ion-cash"></i>
+            </ion-item>
+
+            <ion-item class="list-nob3" style="background-color: transparent;">Contact Us</ion-item>
+
+            <ion-item class="  ">Help</ion-item>
+            <ion-item class="  ">Request Refund</ion-item>
+            <ion-item class="  ">Privacy Policy</ion-item>
+            <ion-item class="  ">Terms of Service</ion-item>
+        </ion-list>
+        
+        <div class="spacer" style="width: 300px; height: 20px;"></div>
+        <button class="button button-energized button-block button-outline " ng-click="logout()" type="button">
+            Logout
+        </button>
+    </ion-content>
+</ion-view>

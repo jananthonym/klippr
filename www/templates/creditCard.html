@@ -1,0 +1,74 @@
+<ion-view title="Credit Card" id="page11" class=" ">
+    <ion-content padding="true" class="has-header content-stable">
+
+        <ion-item ng-show="data.cards.length>0" class="item-borderless" style="background-color: transparent;">Card</ion-item>
+
+        <div class="list" ng-repeat="c in data.cards track by $index">
+            <ion-item ng-show="data.cards.length>0" class="item-icon-right animate-show">
+                {{c.brand}} {{c.last4}} - {{c.exp_month}}/{{c.exp_year}}
+                <i class="icon ion-card"></i>
+            </ion-item>
+            <div ng-if="!addCardMode && !data.editCardMode" class=" button-bar ">
+                <button class=" button button-energized  button-block button-outline " ng-click="deleteConfirm(c, index)" >Remove</button>
+                <button class=" button button-energized  button-block " ng-click="data.editCardMode=true">Edit</button>
+            </div>
+
+            <form ng-if="data.editCardMode" name="paymentForm" class="list " ng-submit="editCard(editedCard, c, index)" >
+
+                <label class="item item-input " id="creditCard-input2" name="cardExp">
+                    <span class="input-label">Exp Month</span>
+                    <input type="number" placeholder="" ng-model="editedCard.exp_month" required>
+                </label>
+                <label class="item item-input " id="creditCard-input3" name="cardExp">
+                    <span class="input-label">Exp Year</span>
+                    <input type="number" placeholder="" ng-model="editedCard.exp_year" required>
+                </label>
+
+                <label class="item item-input " id="creditCard-input5" name="billZip">
+                    <span class="input-label">Zip</span>
+                    <input type="number" placeholder="" ng-model="editedCard.address_zip" required>
+                </label>
+
+                <div class=" button-bar ">
+                    <button class=" button button-energized button-block button-outline " ng-click="data.editCardMode=false" >Cancel</button>
+                    <button ng-disabled="paymentForm.$invalid" type="submit" class=" button button-energized  button-block ">Save Card</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- ADD Card Form -->
+        <div ng-if="data.cards.length>0" class="spacer" style="width: 300px; height: 20px;"></div>
+        <ion-item ng-if="addCardMode" class="item-icon-right  item-borderless">Add Card
+                <i class="icon ion-card"></i>
+        </ion-item>
+        <form ng-if="addCardMode" name="paymentForm" class="list " ng-submit="addCard(card)">
+
+            <label class="item item-input " id="creditCard-input1" name="cardNumber">
+                <span class="input-label">Card Number</span>
+                <input type="number" placeholder="" ng-model="card.number" required>
+            </label>
+
+            <label class="item item-input " id="creditCard-input2" name="cardExp">
+                <span class="input-label">Exp Month</span>
+                <input type="number" placeholder="" ng-model="card.exp_month" required>
+            </label>
+            <label class="item item-input " id="creditCard-input3" name="cardExp">
+                <span class="input-label">Exp Year</span>
+                <input type="number" placeholder="" ng-model="card.exp_year" required>
+            </label>
+
+            <label class="item item-input " id="creditCard-input4" name="cardCCV">
+                <span class="input-label">CCV</span>
+                <input type="number" placeholder="" ng-model="card.cvc" required>
+            </label>
+
+            <label class="item item-input " id="creditCard-input5" name="billZip">
+                <span class="input-label">Zip</span>
+                <input type="number" placeholder="" ng-model="card.address_zip" required>
+            </label>
+
+            <button ng-disabled="paymentForm.$invalid" type="submit" class=" button button-energized  button-block ">Add Card</button>
+        </form>
+
+    </ion-content>
+</ion-view>

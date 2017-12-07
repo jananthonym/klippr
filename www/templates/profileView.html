@@ -1,0 +1,48 @@
+<ion-view title="{{profile.fullName}}" id="page14" class=" ">
+    <ion-content padding="true" class=" manual-remove-top-padding has-header content-stable">
+
+        <ion-refresher
+            pulling-text="Refresh..."
+            on-refresh="getProfile('new')">
+        </ion-refresher>
+
+        <div class="list card " ng-repeat="card in cards track by $index">
+
+            <ion-item class="">
+                <h2>By {{card.employee.firstName}} {{card.employee.lastName}} at {{card.store.name}}</h2>
+                <p>{{card.localTime}}</p>
+            </ion-item>
+
+            <div class=" item item-image">
+                <a style="display:block;" ng-click="viewCard(card)">
+                    <img src="{{card.pic}}" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                </a>
+            </div>
+
+            <ion-item ng-if="card.caption" class="item-borderless">{{card.caption}}</ion-item>
+
+            <div ng-if="card.status=='completed' " class="item item-body list-nob2">
+                <button style="font-size:15px;" ng-class="{'button button-energized button-small icon ion-thumbsup button-outline': !card.liked, 'button button-energized button-small button-default icon ion-thumbsup': card.liked}" ng-click="likeCut($index)">{{card.numLikes}}</button>
+            </div>
+
+        </div>
+
+        <ion-infinite-scroll
+            class="infinite-spinner-energized"
+            ng-if="canLoadOld"
+            immediate-check="false"
+            on-infinite="getProfile('old')"
+            distance="1%">
+        </ion-infinite-scroll>
+
+    </ion-content>
+    <ion-footer-bar ng-if="user" class="bar-energized no-padding">
+        <!-- follow button -->
+        <div class="button-bar no-padding">
+            <a class="button button-energized button-block" ng-click="followUnfollow()">
+                {{followButtonText}}
+            </a>
+        </div>
+    </ion-footer-bar>
+
+</ion-view>
